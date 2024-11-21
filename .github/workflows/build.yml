@@ -58,7 +58,7 @@ jobs:
         run: |
           echo
           echo -e "\033[1mNCam library dependencies:\033[m"
-          readelf -d ${{s3_ncam_bonecrew}}/support/binaries/ncam*debug | grep NEEDED | awk '{print $3" "$4" "$5}'
+          readelf -d ${{s3_ncam_bonecrew}}support/binaries/ncam*debug | grep NEEDED | awk '{print $3" "$4" "$5}'
           echo
           echo -e "\033[1mNCam binary configuration and version:\033[m"
-          ${{s3_ncam_bonecrew}}/support/binaries/ncam*debug -V
+          ${{s3_ncam_bonecrew}}support/binaries/ncam*debug -V
