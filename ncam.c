@@ -390,7 +390,7 @@ static void write_versionfile(bool use_stdout)
 				st.tm_hour, st.tm_min, st.tm_sec);
 	}
 	fprintf(fp,   "Build Date:        %s\n", CS_BUILD_DATE);
-fprintf(fp,   "Version:           %s@%s\n", CS_VERSION,  "-Ncam_with_Emu build by bonecrew");
+fprintf(fp,   "Version:           %s@%s\n", CS_VERSION,  "-Ncam_with_Emu and Streamrelay build by bonecrew");
 		fprintf(fp, "S3 mit:            -ggdb -pipe -ffunction-sections -fdata-sections -fomit-frame-pointer -fno-schedule-insns \n");
 		fprintf(fp, "compiler_option    -O2   \n");
 		fprintf(fp, "compress           nein   \n");
@@ -402,7 +402,7 @@ fprintf(fp,   "Version:           %s@%s\n", CS_VERSION,  "-Ncam_with_Emu build b
         fprintf(fp, "Bibliothek         LIB_DVBCSA 1.1.0 \n");
         fprintf(fp, "Bibliothek         LIB_CURL 8.11.0 \n");
         fprintf(fp, "Bibliothek         LIB_CCID 1.6.1 \n");
-        fprintf(fp, "Options            armv7a-webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-icam-neon-extra \n");
+        fprintf(fp, "Options            webif-dvbapi-ssl-libusb-pcsc-libdvbcsa-streamrelay-neon-extra \n");
         fprintf(fp, "Patch              nein \n");
 		fprintf(fp, "Patch              nein \n");
 		fprintf(fp, "Patch              nein \n");
