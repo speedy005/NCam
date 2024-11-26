@@ -149,7 +149,7 @@ static void show_usage(void)
 	printf("%s",
 		   " \n"
 		   " \n");
-	printf("CardServer NCam-1.0r1 %s-%s, build:-1.0r1 %s (%s) ", CS_VERSION, CS_REVISION, CS_DATE_BUILD, CS_TARGET);
+	printf("CardServer NCam %s-%s, build: %s (%s) ", CS_VERSION, CS_REVISION, CS_DATE_BUILD, CS_TARGET);
 	struct utsname info;
 	if (uname(&info) == 0)
 	{
@@ -158,8 +158,8 @@ static void show_usage(void)
 	}
 	printf("\n");
 	printf("Copyright (C) 2012-2018 developed by Javilonas.\n");
-	printf("Updated, Patched and Recompiled By speedy005 & B.o.S.c.\n");
-	printf("Visit https://bone-crew.neocities.org/ for more details.\n\n");
+	printf("Copyright (C) 2016-2024 developed by RAED.\n");
+	printf("Visit https://www.tunisia-sat.com/ for more details.\n\n");
 
 	printf(" ConfigDir  : %s\n", CS_CONFDIR);
 	printf("\n");
