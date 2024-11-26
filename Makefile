@@ -61,6 +61,8 @@ ifeq "$(shell ./config.sh --enabled MODULE_STREAMRELAY)" "Y"
 	override USE_LIBDVBCSA=1
 	ifeq "$(notdir ${LIBDVBCSA_LIB})" "libdvbcsa.a"
 		override CFLAGS += -DSTATIC_LIBDVBCSA=1
+	else
+		override CFLAGS += -DSTATIC_LIBDVBCSA=0
 	endif
 endif
 
@@ -81,6 +83,8 @@ CC = $(CROSS_DIR)$(CROSS)gcc
 STRIP = $(CROSS_DIR)$(CROSS)strip
 UPX = $(shell which upx 2>/dev/null || true)
 SSL = $(shell which openssl 2>/dev/null || true)
+STAT = $(shell which gnustat 2>/dev/null || which stat 2>/dev/null)
+SPLIT = $(shell which gsplit 2>/dev/null || which split 2>/dev/null)
 
 ifeq "$(shell $(CC) -dumpmachine | cut -d'-' -f1 2>/dev/null)" "aarch64"
 LD = $(CROSS_DIR)$(CROSS)ld
@@ -122,7 +126,7 @@ ifeq "$(shell ./config.sh --enabled WITH_SIGNING)" "Y"
 		SIGN_PUBKEY    = $(OBJDIR)/signing/pkey
 		SIGN_HASH      = $(OBJDIR)/signing/sha256
 		SIGN_DIGEST    = $(OBJDIR)/signing/digest
-		SIGN_SUBJECT   = $(shell ./config.sh --cert-info | head -n 1)
+		SIGN_SUBJECT   = $(subst $\',$\'$\"$\'$\"$\',$(shell ./config.sh --cert-info | head -n 1))
 		SIGN_SIGALGO   = $(shell ./config.sh --cert-info | tail -n 1)
 		SIGN_VALID     = $(shell ./config.sh --cert-info | head -n 4 | tail -n 1)
 		SIGN_PUBALGO   = $(shell ./config.sh --cert-info | head -n 5 | tail -n 1)
@@ -130,18 +134,19 @@ ifeq "$(shell ./config.sh --enabled WITH_SIGNING)" "Y"
 		SIGN_VER       = ${shell ($(SSL) version 2>/dev/null || echo "n.a.") | head -n 1 | awk -F'(' '{ print $$1 }' | xargs}
 		SIGN_INFO      = $(shell echo '|  Signing  : $(SIGN_VER)\n|             $(SIGN_PUBALGO), $(SIGN_PUBBIT), $(SIGN_SIGALGO),\n|             Valid $(SIGN_VALID), $(SIGN_SUBJECT)\n')
 		SIGN_INFO_TOOL = $(shell echo '|  SSL      = $(SSL)\n')
+		override STD_DEFS += -DCERT_ALGO_$(shell ./config.sh --cert-info | head -n 5 | tail -n 1 | awk -F':|-' '{ print toupper($$2) }' | xargs)
 		SIGN_COMMAND_NCAM += sha256sum $@ | awk '{ print $$1 }' | tr -d '\n' > $(SIGN_HASH);
-		SIGN_COMMAND_NCAM += printf 'SIGN	SHA256('; stat -c %s $(SIGN_HASH) | tr -d '\n'; printf '): '; cat $(SIGN_HASH); printf ' -> ';
+		SIGN_COMMAND_NCAM += printf 'SIGN	SHA256('; $(STAT) -c %s $(SIGN_HASH) | tr -d '\n'; printf '): '; cat $(SIGN_HASH); printf ' -> ';
 		SIGN_COMMAND_NCAM += $(SSL) x509 -pubkey -noout -in $(SIGN_CERT)         -out $(SIGN_PUBKEY);
 		SIGN_COMMAND_NCAM += $(SSL) dgst -sha256      -sign $(SIGN_PRIVKEY)      -out $(SIGN_DIGEST) $(SIGN_HASH);
 		SIGN_COMMAND_NCAM += $(SSL) dgst -sha256    -verify $(SIGN_PUBKEY) -signature $(SIGN_DIGEST) $(SIGN_HASH) | tr -d '\n';
 		SIGN_COMMAND_NCAM += [ -f $(UPX_SPLIT_PREFIX)aa ] && cat $(UPX_SPLIT_PREFIX)aa > $@;
 		SIGN_COMMAND_NCAM += printf '$(SIGN_MARKER)' | cat - $(SIGN_DIGEST) >> $@;
 		SIGN_COMMAND_NCAM += [ -f $(UPX_SPLIT_PREFIX)ab ] && cat $(UPX_SPLIT_PREFIX)ab >> $@;
-		SIGN_COMMAND_NCAM += printf ' <- DIGEST('; stat -c %s $(SIGN_DIGEST) | tr -d '\n'; printf ')\n';
+		SIGN_COMMAND_NCAM += printf ' <- DIGEST('; $(STAT) -c %s $(SIGN_DIGEST) | tr -d '\n'; printf ')\n';
 		ifdef USE_COMPRESS
 			ifneq ($(UPX_VER),n.a.)
-				SIGN_COMMAND_NCAM  += split --bytes=$$(grep -oba '$(SIGN_UPXMARKER)' $@ | tail -1 | awk -F':' '{ print $$1 }') $@ $(UPX_SPLIT_PREFIX);
+				SIGN_COMMAND_NCAM  += $(SPLIT) --bytes=$$(grep -oba '$(SIGN_UPXMARKER)' $@ | tail -1 | awk -F':' '{ print $$1 }') $@ $(UPX_SPLIT_PREFIX);
 				SIGN_COMMAND_NCAM  += $(SIGN_COMMAND_NCAM)
 			endif
 		endif
