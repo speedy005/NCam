@@ -391,10 +391,10 @@ static void write_versionfile(bool use_stdout)
 	}
 	fprintf(fp,   "Build Date:        %s\n", CS_BUILD_DATE);
 fprintf(fp,   "Version:           %s@%s\n", CS_VERSION,  "-Ncam_with_Emu build by bonecrew");
-		fprintf(fp, "S3 mit:           -ggdb -pipe -ffunction-sections -fdata-sections -fomit-frame-pointer -fno-schedule-insns \n");
+		fprintf(fp, "S3 mit:            -ggdb -pipe -ffunction-sections -fdata-sections -fomit-frame-pointer -fno-schedule-insns \n");
 		fprintf(fp, "compiler_option    -O2   \n");
 		fprintf(fp, "compress           nein   \n");
-		fprintf(fp, "Toolchain          vuplus4k_armv7a  by bonecrew \n");
+		fprintf(fp, "Toolchain          armv7a  by bonecrew \n");
 		fprintf(fp, "Bibliothek         LIB_SSL 3.4.0 \n");
 		fprintf(fp, "Bibliothek         LIB_USB 1.0.27 \n");
 		fprintf(fp, "Bibliothek         LIB_PCSC 2.3.0 \n");
@@ -407,8 +407,7 @@ fprintf(fp,   "Version:           %s@%s\n", CS_VERSION,  "-Ncam_with_Emu build b
 		fprintf(fp, "Patch              nein \n");
 		fprintf(fp, "Patch              nein \n");
 		fprintf(fp, "Neon               ja / 128 \n");
- 	    fprintf(fp, "Compiler:          %s\n", CS_TARGET);
-        fprintf(fp, "TempDir:           %s\n", cs_tmpdir);
+ 	    fprintf(fp, "TempDir:           %s\n", cs_tmpdir);
  	    fprintf(fp, "Box type:          %s (%s)\n", boxtype_get(), boxname_get());
  	    fprintf(fp, "PID:               %d\n", getppid());
         fprintf(fp, "Version:           NCam_%s\n", CS_VERSION);
