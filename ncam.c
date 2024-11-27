@@ -390,11 +390,11 @@ static void write_versionfile(bool use_stdout)
 				st.tm_hour, st.tm_min, st.tm_sec);
 	}
 	fprintf(fp,   "Build Date:        %s\n", CS_BUILD_DATE);
-fprintf(fp,   "Version:           %s@%s\n", CS_VERSION,  "-Ncam_with_Emu and Streamrelay build by bonecrew");
+fprintf(fp,   "Version:           %s@%s\n", CS_VERSION,  "-with Streamrelay build by bonecrew");
 		fprintf(fp, "S3 mit:            -ggdb -pipe -ffunction-sections -fdata-sections -fomit-frame-pointer -fno-schedule-insns \n");
 		fprintf(fp, "compiler_option    -O2   \n");
 		fprintf(fp, "compress           nein   \n");
-		fprintf(fp, "Toolchain          armv7a  by bonecrew \n");
+		fprintf(fp, "Toolchain          armv7a by bonecrew \n");
 		fprintf(fp, "Bibliothek         LIB_SSL 3.4.0 \n");
 		fprintf(fp, "Bibliothek         LIB_USB 1.0.27 \n");
 		fprintf(fp, "Bibliothek         LIB_PCSC 2.3.0 \n");
@@ -410,7 +410,6 @@ fprintf(fp,   "Version:           %s@%s\n", CS_VERSION,  "-Ncam_with_Emu and Str
  	    fprintf(fp, "TempDir:           %s\n", cs_tmpdir);
  	    fprintf(fp, "Box type:          %s (%s)\n", boxtype_get(), boxname_get());
  	    fprintf(fp, "PID:               %d\n", getppid());
-        fprintf(fp, "Version:           NCam_%s\n", CS_VERSION);
         fprintf(fp, "Revision:          %s\n", CS_REVISION);
 	    fprintf(fp, "Build:             %s\n", CS_DATE_BUILD);
 #ifdef CS_CACHEEX_AIO
