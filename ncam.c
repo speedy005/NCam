@@ -391,7 +391,8 @@ static void write_versionfile(bool use_stdout)
 	}
 	fprintf(fp,   "Build Date:        %s\n", CS_BUILD_DATE);
 fprintf(fp,   "Version:           %s@%s\n", CS_VERSION,  "-with Streamrelay build by bonecrew");
-		fprintf(fp, "S3 mit:            -ggdb -pipe -ffunction-sections -fdata-sections -fomit-frame-pointer -fno-schedule-insns \n");
+		fprintf(fp, "Compiled by:    %s\n", "Simplebuild 3 bonecrew");
+	        fprintf(fp, "S3 mit:            -ggdb -pipe -ffunction-sections -fdata-sections -fomit-frame-pointer -fno-schedule-insns \n");
 		fprintf(fp, "compiler_option    -O2   \n");
 		fprintf(fp, "compress           nein   \n");
 		fprintf(fp, "Toolchain          armv7a by bonecrew \n");
