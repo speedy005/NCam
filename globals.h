@@ -394,7 +394,7 @@ typedef uint8_t uint8_t;
 #endif
 #endif
 #ifndef CS_TARGET
-#define CS_TARGET "r1.0.1"
+#define CS_TARGET ""
 #endif
 #ifndef CS_CONFDIR
 #define CS_CONFDIR    "/var/tuxbox/config"
