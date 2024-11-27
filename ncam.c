@@ -159,10 +159,9 @@ static void show_usage(void)
 	printf("\n");
 	printf("Copyright (C) 2012-2018 developed by Javilonas.\n");
 	printf("Copyright (C) 2012-2018 developed by READ.\n");
-	printf("2024 Updated, Patched and Recompiled bx bonecrew.\n");
+	printf("2024 Updated, Patched and Recompiled by bonecrew.\n");
 	printf("Visit https://bone-crew.neocities.org/for more details.\n\n");
-
-	printf(" ConfigDir  : %s\n", CS_CONFDIR);
+        printf(" ConfigDir  : %s\n", CS_CONFDIR);
 	printf("\n");
 	printf(" Usage: ncam [parameters]\n");
 	printf("\n Directories:\n");
