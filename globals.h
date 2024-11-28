@@ -378,7 +378,7 @@ typedef uint8_t uint8_t;
  *         constants
  * =========================== */
 #define SCM_URL					"https://github.com/speedy005/Ncam"
-#define CS_VERSION    "Ncam_bonecrew_2.24.11_r1.0.5"
+#define CS_VERSION    "Ncam_bonecrew_r1.0.5_2.24.11-11856_"
 #ifndef CS_REVISION
 #define CS_REVISION   "_bonecrew_"
 #endif
