@@ -377,8 +377,10 @@ typedef uint8_t uint8_t;
 /* ===========================
  *         constants
  * =========================== */
-#define SCM_URL					"https://github.com/speedy005/Ncam"
-#define CS_VERSION    "_bonecrew_r1.0.6_2024_11_11856_"
+#define SCM_URL					"https://github.com/speedy005/Ncam/commit/master"
+#define WIKI_URL				"https://wiki.streamboard.tv/wiki"
+#define BOARD_URL				"https://board.streamboard.tv"
+#define CS_VERSION    "_bonecrew_r1.0.6-2024-11-11856_"
 #ifndef CS_REVISION
 #define CS_REVISION   "_bonecrew_"
 #endif
