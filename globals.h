@@ -37,7 +37,7 @@
 #include <termios.h>
 #include <inttypes.h>
 #include <sys/utsname.h>
-#if !defined(__APPLE__)
+#if !defined(__APPLE__) && !defined(__FreeBSD__) && !defined(__OpenBSD__)
 #include <sys/sysmacros.h>
 #endif
 #include <sys/sysinfo.h>
@@ -380,7 +380,7 @@ typedef uint8_t uint8_t;
 #define SCM_URL					"https://github.com/speedy005/Ncam/commit/master"
 #define WIKI_URL				"https://wiki.streamboard.tv/wiki"
 #define BOARD_URL				"https://board.streamboard.tv"
-#define CS_VERSION    "_bonecrew_r1.0.6_2024_11_11856_"
+#define CS_VERSION    "_bonecrew_r1.0.7_2024_11_11856_"
 #ifndef CS_REVISION
 #define CS_REVISION   "_bonecrew_"
 #endif
@@ -396,7 +396,7 @@ typedef uint8_t uint8_t;
 #endif
 #endif
 #ifndef CS_TARGET
-#define CS_TARGET ""
+#define CS_TARGET "unknown"
 #endif
 #ifndef CS_CONFDIR
 #define CS_CONFDIR    "/etc/tuxbox/config"
@@ -2599,6 +2599,7 @@ struct s_config
 	int32_t         cccam_cfg_reconnect_delay;  // max tcp connection block delay
 	int8_t          cccam_cfg_reconnect_attempts;
 	int8_t          cccam_cfg_inactivity;
+	int8_t          cccam_cfg_fallback;
 };
 
 struct s_clientinit
