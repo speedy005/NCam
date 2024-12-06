@@ -399,7 +399,7 @@ typedef uint8_t uint8_t;
 #define CS_TARGET "unknown"
 #endif
 #ifndef CS_CONFDIR
-#define CS_CONFDIR    "/etc/tuxbox/config"
+#define CS_CONFDIR				"/usr/local/etc"
 #endif
 #ifndef CS_LOGFILE
 #define CS_LOGFILE    "/tmp/ncam.log"
